@@ -1,23 +1,25 @@
 package breeze.linalg
 
 import breeze.generic.UFunc
+import com.github.fommil.netlib.LAPACK.{getInstance => lapack}
 import org.netlib.util.intW
-import com.github.fommil.netlib.LAPACK.{getInstance=>lapack}
+
 
 /**
- * Eigenvalue decomposition (right eigenvectors)
- *
- * This function returns the real and imaginary parts of the eigenvalues,
- * and the corresponding eigenvectors.  For most (?) interesting matrices,
- * the imaginary part of all eigenvalues will be zero (and the corresponding
- * eigenvectors will be real).  Any complex eigenvalues will appear in
- * complex-conjugate pairs, and the real and imaginary components of the
- * eigenvector for each pair will be in the corresponding columns of the
- * eigenvector matrix.  Take the complex conjugate to find the second
- * eigenvector.
- *
- * Based on EVD.java from MTJ 0.9.12
- */
+  * Eigenvalue decomposition (right eigenvectors)
+  *
+  * This function returns the real and imaginary parts of the eigenvalues,
+  * and the corresponding eigenvectors. The eigenvectors come in the form of
+  * a DenseMatrix with the eigenvectors as columns.
+  * For most (?) interesting matrices, the imaginary part of all eigenvalues
+  * will be zero (and the corresponding eigenvectors will be real).
+  * Any complex eigenvalues will appear in complex-conjugate pairs, and the
+  * real and imaginary components of the eigenvector for each pair will be
+  * in the corresponding columns of the eigenvector matrix.
+  * Take the complex conjugate to find the second eigenvector.
+  *
+  * Based on EVD.java from MTJ 0.9.12
+  */
 object eig extends UFunc {
 
   // TODO: probably we should just return an eigenValues: DV[Complex] ?
